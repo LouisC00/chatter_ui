@@ -8,4 +8,5 @@ export const onLogout = () => {
   clearToken();
   router.navigate("/login");
   client.resetStore();
+  client.onResetStore(() => new Promise(() => {}));
 };
