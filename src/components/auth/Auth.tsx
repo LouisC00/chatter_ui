@@ -20,15 +20,14 @@ const Auth = ({
 }: AuthProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const { data } = useGetMe();
-  const me = useGetMe();
+  const { data } = useGetMe();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (me.me) {
+    if (data) {
       navigate("/");
     }
-  }, [me.me, navigate]);
+  }, [data, navigate]);
 
   return (
     <Stack

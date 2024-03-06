@@ -6,32 +6,10 @@ import { snackVar } from "../../constants/snack";
 import { commonFetch } from "../../utils/fetch";
 import { useEffect } from "react";
 
-// const Profile = () => {
-//   const me = useGetMe();
-
-//   useEffect(()=>{
-
-//   },[])
-
-//   const handleFileUpload = async (event: any) => {
-//     try {
-//       const formData = new FormData();
-//       formData.append("file", event.target.files[0]);
-//       const res = await commonFetch(`${API_URL}/users/image`, {
-//         method: "POST",
-//         body: formData,
-//       });
-//       if (!res.ok) {
-//         throw new Error("Image upload failed.");
-//       }
-//       snackVar({ message: "Image uploaded.", type: "success" });
-//     } catch (err) {
-//       snackVar({ message: "Error uploading file.", type: "error" });
-//     }
-//   };
-
 const Profile = () => {
-  const { me, refetch } = useGetMe();
+  const me = useGetMe();
+
+  useEffect(() => {}, []);
 
   const handleFileUpload = async (event: any) => {
     try {
@@ -45,7 +23,6 @@ const Profile = () => {
         throw new Error("Image upload failed.");
       }
       snackVar({ message: "Image uploaded.", type: "success" });
-      refetch(); // Refetch the user data to update the profile image
     } catch (err) {
       snackVar({ message: "Error uploading file.", type: "error" });
     }
@@ -61,7 +38,7 @@ const Profile = () => {
       }}
     >
       <Typography variant="h1">{me?.data?.me.username}</Typography>
-      <Avatar sx={{ width: 256, height: 256 }} src={me?.data?.me.imageUrl} />
+      <Avatar sx={{ width: 256, height: 256 }} src={me.data?.me.imageUrl} />
       <Button
         component="label"
         variant="contained"

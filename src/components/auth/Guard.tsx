@@ -11,23 +11,22 @@ interface GuardProps {
 }
 
 const Guard = ({ children }: GuardProps) => {
-  // const { data: user, error } = useGetMe();
-  const me = useGetMe();
+  const { data: user, error } = useGetMe();
   const { path } = usePath();
 
   useEffect(() => {
-    if (me.me) {
+    if (user) {
       authenticatedVar(true);
     }
-  }, [me.me]);
+  }, [user]);
 
   useEffect(() => {
-    if (me.error?.networkError) {
+    if (error?.networkError) {
       snackVar(UNKNOWN_ERROR_SNACK_MESSAGE);
     }
-  }, [me.error]);
+  }, [error]);
 
-  return <>{excludedRoutes.includes(path) ? children : me.me && children}</>;
+  return <>{excludedRoutes.includes(path) ? children : user && children}</>;
 };
 
 export default Guard;
