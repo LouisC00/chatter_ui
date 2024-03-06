@@ -21,6 +21,44 @@ const darkTheme = createTheme({
   },
 });
 
+// const App = () => {
+//   const { path } = usePath();
+
+//   const showChatList = path === "/" || path.includes("chats");
+
+//   return (
+//     <ApolloProvider client={client}>
+//       <ThemeProvider theme={darkTheme}>
+//         <CssBaseline />
+//         <Header />
+//         <Guard>
+//           <Container maxWidth="xl" sx={{ marginTop: "1rem" }}>
+//             {showChatList ? (
+//               <Grid container spacing={5}>
+//                 <Grid item xs={12} md={5} lg={4} xl={3}>
+//                   <ChatList />
+//                 </Grid>
+//                 <Grid xs={12} item md={7} lg={8} xl={9}>
+//                   <Routes />
+//                 </Grid>
+//               </Grid>
+//             ) : (
+//               <Routes />
+//             )}
+//           </Container>
+//         </Guard>
+//         <Snackbar />
+//       </ThemeProvider>
+//     </ApolloProvider>
+//   );
+// };
+
+// const Routes = () => {
+//   return <RouterProvider router={router} />;
+// };
+
+// export default App;
+
 const App = () => {
   const { path } = usePath();
 
@@ -32,13 +70,29 @@ const App = () => {
         <CssBaseline />
         <Header />
         <Guard>
-          <Container maxWidth="xl" sx={{ marginTop: "1rem" }}>
+          <Container
+            maxWidth="xl"
+            sx={{ marginTop: "1rem", height: "calc(100vh - 64px)" }}
+          >
+            {" "}
+            {/* Adjust the height calculation based on your header's height */}
             {showChatList ? (
-              <Grid container spacing={5}>
-                <Grid item xs={12} md={5} lg={4} xl={3}>
+              <Grid container spacing={5} sx={{ height: "100%" }}>
+                <Grid
+                  item
+                  xs={12}
+                  md={5}
+                  lg={4}
+                  xl={3}
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <ChatList />
                 </Grid>
-                <Grid xs={12} item md={7} lg={8} xl={9}>
+                <Grid xs={12} item md={7} lg={8} xl={9} sx={{ height: "100%" }}>
                   <Routes />
                 </Grid>
               </Grid>

@@ -128,7 +128,9 @@ const ChatList = () => {
       setSelectedChatId(pathSplit[1]);
     }
   }, [path]);
+
   const chatListRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (chatListRef.current) {
       const isScrolledToBottom =
@@ -139,7 +141,27 @@ const ChatList = () => {
         chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
       }
     }
-  }, [data?.chats]);
+  }, [data?.chats.length]);
+
+  // useEffect(() => {
+  //   let timeoutId: string | number | NodeJS.Timeout | undefined;
+
+  //   if (chatListRef.current) {
+  //     const isScrolledToBottom =
+  //       chatListRef.current.scrollHeight - chatListRef.current.clientHeight <=
+  //       chatListRef.current.scrollTop + 10; // Adjust tolerance as needed
+
+  //     if (isScrolledToBottom) {
+  //       timeoutId = setTimeout(() => {
+  //         chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+  //       }, 100); // Delay scrolling to ensure chat items are rendered
+  //     }
+  //   }
+
+  //   return () => {
+  //     clearTimeout(timeoutId); // Clear the timeout when the component unmounts or dependencies change
+  //   };
+  // }, [data.chats.length]); // Depend on the number of chats
 
   return (
     <>
