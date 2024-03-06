@@ -22,7 +22,7 @@ const Profile = () => {
       if (!res.ok) {
         throw new Error("Image upload failed.");
       }
-      window.location.reload();
+      // window.location.reload();
       snackVar({ message: "Image uploaded.", type: "success" });
     } catch (err) {
       snackVar({ message: "Error uploading file.", type: "error" });
@@ -39,7 +39,11 @@ const Profile = () => {
       }}
     >
       <Typography variant="h1">{me?.data?.me.username}</Typography>
-      <Avatar sx={{ width: 256, height: 256 }} src={me.data?.me.imageUrl} />
+      {/* <Avatar sx={{ width: 256, height: 256 }} src={me.data?.me.imageUrl} /> */}
+      <Avatar
+        sx={{ width: 256, height: 256 }}
+        src={`${me.data?.me.imageUrl}?${new Date().getTime()}`}
+      />
       <Button
         component="label"
         variant="contained"
