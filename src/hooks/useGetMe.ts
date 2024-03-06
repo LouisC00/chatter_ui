@@ -9,8 +9,13 @@ const getMeDocument = graphql(`
   }
 `);
 
+// const useGetMe = () => {
+//   return useQuery(getMeDocument);
+// };
+
 const useGetMe = () => {
-  return useQuery(getMeDocument);
+  const { data, loading, error, refetch } = useQuery(getMeDocument);
+  return { me: data?.me, loading, error, refetch };
 };
 
 // const useGetMe = () => {
