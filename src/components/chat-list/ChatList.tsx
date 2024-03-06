@@ -9,7 +9,6 @@ import { useMessageCreated } from "../../hooks/useMessageCreated";
 import { PAGE_SIZE } from "../../constants/page-size";
 import InfiniteScroll from "react-infinite-scroller";
 import { useCountChats } from "../../hooks/useCountChats";
-import { key } from "localforage";
 
 const ChatList = () => {
   const [chatListAddVisible, setChatListAddVisible] = useState(false);
