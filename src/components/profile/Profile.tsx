@@ -4,12 +4,9 @@ import { useGetMe } from "../../hooks/useGetMe";
 import { API_URL } from "../../constants/urls";
 import { snackVar } from "../../constants/snack";
 import { commonFetch } from "../../utils/fetch";
-import { useEffect } from "react";
 
 const Profile = () => {
   const me = useGetMe();
-
-  useEffect(() => {}, []);
 
   const handleFileUpload = async (event: any) => {
     try {
