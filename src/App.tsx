@@ -29,7 +29,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={darkTheme}>
-        {/* <CssBaseline /> */}
+        <CssBaseline />
         <Header />
         <Guard>
           <Container maxWidth="xl" sx={{ marginTop: "1rem" }}>
