@@ -13,9 +13,4 @@ const useGetMe = () => {
   return useQuery(getMeDocument);
 };
 
-// const useGetMe = () => {
-//   const { data, loading, error, refetch } = useQuery(getMeDocument);
-//   return { data, loading, error, refetch };
-// };
-
 export { useGetMe };
