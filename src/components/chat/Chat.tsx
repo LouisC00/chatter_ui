@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetChat } from "../../hooks/useGetChat";
 import {
   Avatar,
@@ -31,21 +31,31 @@ const Chat = () => {
     limit: PAGE_SIZE,
   });
   const divRef = useRef<HTMLDivElement | null>(null);
-  const location = useLocation();
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const { messagesCount, countMessages } = useCountMessages(chatId);
 
   useEffect(() => {
     countMessages();
   }, [countMessages]);
 
-  const scrollToBottom = () => divRef.current?.scrollIntoView();
+  const isUserAtBottom = () => {
+    if (!scrollContainerRef.current) return false;
+    const { scrollTop, scrollHeight, clientHeight } =
+      scrollContainerRef.current;
+    return scrollHeight - scrollTop <= clientHeight + 50; // 50px threshold
+  };
+
+  const scrollToBottom = () => {
+    if (isUserAtBottom()) {
+      divRef.current?.scrollIntoView();
+    }
+  };
 
   useEffect(() => {
     if (messages?.messages && messages.messages.length <= PAGE_SIZE) {
-      setMessage("");
       scrollToBottom();
     }
-  }, [location.pathname, messages]);
+  }, [messages?.messages.length]);
 
   const handleCreateMessage = async () => {
     await createMessage({
@@ -58,7 +68,10 @@ const Chat = () => {
   return (
     <Stack sx={{ height: "100%", justifyContent: "space-between" }}>
       <h1>{data?.chat.name}</h1>
-      <Box sx={{ maxHeight: "70vh", overflow: "auto" }}>
+      <Box
+        sx={{ maxHeight: "70vh", overflow: "auto" }}
+        ref={scrollContainerRef}
+      >
         <InfiniteScroll
           pageStart={0}
           isReverse={true}
@@ -80,7 +93,12 @@ const Chat = () => {
                   new Date(messageB.createdAt).getTime()
               )
               .map((message) => (
-                <Grid container alignItems="center" marginBottom="1rem">
+                <Grid
+                  container
+                  alignItems="center"
+                  marginBottom="1rem"
+                  key={message.id}
+                >
                   <Grid item xs={2} lg={1}>
                     <Stack
                       spacing={1}
@@ -100,11 +118,6 @@ const Chat = () => {
                   <Grid item xs={10} lg={11}>
                     <Stack>
                       <Paper sx={{ width: "fit-content" }}>
-                        {/* <Typography
-                          sx={{ padding: "0.9rem", wordBreak: "break-all" }}
-                        >
-                          {message.content}
-                        </Typography> */}
                         <Typography
                           sx={{ padding: "0.9rem", wordBreak: "break-all" }}
                         >
@@ -143,17 +156,6 @@ const Chat = () => {
           margin: "1rem 0",
         }}
       >
-        {/* <InputBase
-          sx={{ ml: 1, flex: 1, width: "100%" }}
-          onChange={(event) => setMessage(event.target.value)}
-          value={message}
-          placeholder="Message"
-          onKeyDown={async (event) => {
-            if (event.key === "Enter") {
-              await handleCreateMessage();
-            }
-          }}
-        /> */}
         <InputBase
           sx={{ ml: 1, flex: 1, width: "100%" }}
           onChange={(event) => setMessage(event.target.value)}
