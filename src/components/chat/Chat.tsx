@@ -34,6 +34,8 @@ const Chat = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const { messagesCount, countMessages } = useCountMessages(chatId);
 
+  const [isAtBottom, setIsAtBottom] = useState(true);
+
   useEffect(() => {
     countMessages();
   }, [countMessages]);
@@ -43,7 +45,7 @@ const Chat = () => {
     if (!container) return;
 
     const handleScroll = () => {
-      console.log("User manually scrolled, at bottom:", isUserAtBottom());
+      isUserAtBottom();
     };
 
     container.addEventListener("scroll", handleScroll);
@@ -54,16 +56,15 @@ const Chat = () => {
   }, []);
 
   const isUserAtBottom = () => {
-    if (!scrollContainerRef.current) return false;
+    if (!scrollContainerRef.current) return;
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
-    const atBottom = scrollHeight - scrollTop <= clientHeight + 10; // Reduce threshold
-    console.log("User at bottom:", atBottom, "Scroll Top:", scrollTop);
-    return scrollTop > 0 && scrollHeight - scrollTop <= clientHeight + 10;
+    const atBottom = scrollHeight - scrollTop === clientHeight;
+    setIsAtBottom(atBottom);
   };
 
   const scrollToBottom = () => {
-    if (isUserAtBottom()) {
+    if (isAtBottom) {
       divRef.current?.scrollIntoView();
     }
   };
@@ -128,7 +129,7 @@ const Chat = () => {
                       justifyContent="center"
                     >
                       <Avatar
-                        src={message.user.imageUrl ?? ""}
+                        src={message.user.imageUrl}
                         sx={{ width: 52, height: 52 }}
                       />
                       <Typography variant="caption">
