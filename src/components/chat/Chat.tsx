@@ -60,17 +60,17 @@ const Chat = () => {
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
     const atBottom = scrollHeight - scrollTop === clientHeight;
-    setIsAtBottom(atBottom);
   };
 
   const scrollToBottom = () => {
     if (isAtBottom) {
       divRef.current?.scrollIntoView();
     }
+    setIsAtBottom(true);
   };
 
   useEffect(() => {
-    if (messages?.messages && messages.messages.length <= PAGE_SIZE) {
+    if (messages?.messages && isAtBottom) {
       scrollToBottom();
     }
   }, [messages?.messages.length]);
