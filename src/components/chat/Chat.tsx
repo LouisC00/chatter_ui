@@ -57,15 +57,9 @@ const Chat = () => {
     if (!scrollContainerRef.current) return false;
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
-    console.log(
-      "Scroll Top:",
-      scrollTop,
-      "Scroll Height:",
-      scrollHeight,
-      "Client Height:",
-      clientHeight
-    );
-    return scrollHeight - scrollTop <= clientHeight + 50;
+    const atBottom = scrollHeight - scrollTop <= clientHeight + 10; // Reduce threshold
+    console.log("User at bottom:", atBottom, "Scroll Top:", scrollTop);
+    return atBottom && scrollTop > 0; // Ensure scrollTop is not 0
   };
 
   const scrollToBottom = () => {
@@ -120,12 +114,12 @@ const Chat = () => {
                   new Date(messageA.createdAt).getTime() -
                   new Date(messageB.createdAt).getTime()
               )
-              .map((message) => (
+              .map((message, index) => (
                 <Grid
                   container
                   alignItems="center"
                   marginBottom="1rem"
-                  key={message.createdAt}
+                  key={`${message.createdAt}-${index}`}
                 >
                   <Grid item xs={2} lg={1}>
                     <Stack
