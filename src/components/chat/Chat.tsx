@@ -60,6 +60,7 @@ const Chat = () => {
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
     const atBottom = scrollHeight - scrollTop === clientHeight;
+    setIsAtBottom(atBottom);
   };
 
   const scrollToBottom = () => {
