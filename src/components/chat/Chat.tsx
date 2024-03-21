@@ -97,7 +97,7 @@ const Chat = () => {
                   container
                   alignItems="center"
                   marginBottom="1rem"
-                  key={message.id}
+                  key={message.chatId}
                 >
                   <Grid item xs={2} lg={1}>
                     <Stack
