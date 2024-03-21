@@ -38,11 +38,34 @@ const Chat = () => {
     countMessages();
   }, [countMessages]);
 
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      console.log("User manually scrolled, at bottom:", isUserAtBottom());
+    };
+
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const isUserAtBottom = () => {
     if (!scrollContainerRef.current) return false;
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
-    return scrollHeight - scrollTop <= clientHeight + 50; // 50px threshold
+    console.log(
+      "Scroll Top:",
+      scrollTop,
+      "Scroll Height:",
+      scrollHeight,
+      "Client Height:",
+      clientHeight
+    );
+    return scrollHeight - scrollTop <= clientHeight + 50;
   };
 
   const scrollToBottom = () => {
@@ -58,9 +81,14 @@ const Chat = () => {
   }, [messages?.messages.length]);
 
   const handleCreateMessage = async () => {
+    if (!message.trim()) return;
+
+    const startTime = Date.now();
     await createMessage({
       variables: { createMessageInput: { content: message, chatId } },
     });
+    console.log("Message send time:", Date.now() - startTime, "ms");
+
     setMessage("");
     scrollToBottom();
   };
@@ -97,7 +125,7 @@ const Chat = () => {
                   container
                   alignItems="center"
                   marginBottom="1rem"
-                  key={message.chatId}
+                  key={message.createdAt}
                 >
                   <Grid item xs={2} lg={1}>
                     <Stack
