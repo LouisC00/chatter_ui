@@ -59,7 +59,7 @@ const Chat = () => {
       scrollContainerRef.current;
     const atBottom = scrollHeight - scrollTop <= clientHeight + 10; // Reduce threshold
     console.log("User at bottom:", atBottom, "Scroll Top:", scrollTop);
-    return atBottom && scrollTop > 0; // Ensure scrollTop is not 0
+    return scrollTop > 0 && scrollHeight - scrollTop <= clientHeight + 10;
   };
 
   const scrollToBottom = () => {
@@ -128,7 +128,7 @@ const Chat = () => {
                       justifyContent="center"
                     >
                       <Avatar
-                        src={message.user.imageUrl}
+                        src={message.user.imageUrl ?? ""}
                         sx={{ width: 52, height: 52 }}
                       />
                       <Typography variant="caption">
