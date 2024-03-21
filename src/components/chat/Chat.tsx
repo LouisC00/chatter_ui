@@ -64,9 +64,9 @@ const Chat = () => {
   };
 
   const scrollToBottom = () => {
-    if (isAtBottom) {
-      divRef.current?.scrollIntoView();
-    }
+    // if (isAtBottom) {
+    divRef.current?.scrollIntoView();
+    // }
     setIsAtBottom(true);
   };
 
@@ -86,6 +86,7 @@ const Chat = () => {
     console.log("Message send time:", Date.now() - startTime, "ms");
 
     setMessage("");
+    // setIsAtBottom(true);
     scrollToBottom();
   };
 
