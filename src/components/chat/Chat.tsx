@@ -102,6 +102,7 @@ const Chat = () => {
         }}
         ref={scrollContainerRef}
       >
+        <Box sx={{ flexGrow: 1 }}></Box>
         <InfiniteScroll
           pageStart={0}
           isReverse={true}
@@ -115,7 +116,6 @@ const Chat = () => {
           }
           useWindow={false}
         >
-          <Box sx={{ flexGrow: 1 }}></Box>
           {messages &&
             [...messages.messages]
               .sort(
