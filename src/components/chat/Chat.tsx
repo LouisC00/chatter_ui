@@ -94,7 +94,13 @@ const Chat = () => {
     <Stack sx={{ height: "100%", justifyContent: "space-between" }}>
       <h1>{data?.chat.name}</h1>
       <Box
-        sx={{ maxHeight: "70vh", overflow: "auto" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end", // Align items to the end (bottom)
+          maxHeight: "70vh",
+          overflow: "auto",
+        }}
         ref={scrollContainerRef}
       >
         <InfiniteScroll
