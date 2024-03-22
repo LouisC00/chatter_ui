@@ -95,12 +95,14 @@ const Chat = () => {
       <h1>{data?.chat.name}</h1>
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "column-reverse", // Start from the bottom
           maxHeight: "70vh",
           overflow: "auto",
         }}
         ref={scrollContainerRef}
       >
-        <Box sx={{ flexGrow: 1, minHeight: "1px" }}>flexGrow:1 box</Box>
+        {/* <Box sx={{ flexGrow: 1, minHeight: "1px" }}>flexGrow:1 box</Box> */}
         <div>hi</div>
         <InfiniteScroll
           pageStart={0}
