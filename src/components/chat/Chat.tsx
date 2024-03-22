@@ -98,7 +98,7 @@ const Chat = () => {
           display: "flex",
           flexDirection: "column-reverse", // Start from the bottom
           maxHeight: "70vh",
-          overflow: "auto",
+          // overflow: "auto",
         }}
         ref={scrollContainerRef}
       >
