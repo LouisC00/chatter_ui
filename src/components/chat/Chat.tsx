@@ -102,7 +102,7 @@ const Chat = () => {
         }}
         ref={scrollContainerRef}
       >
-        <Box sx={{ flexGrow: 1 }}></Box>
+        <Box sx={{ flexGrow: 1, minHeight: "1px" }}></Box>
         <InfiniteScroll
           pageStart={0}
           isReverse={true}
