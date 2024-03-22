@@ -95,6 +95,8 @@ const Chat = () => {
       <h1>{data?.chat.name}</h1>
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "column",
           maxHeight: "70vh",
           overflow: "auto",
         }}
