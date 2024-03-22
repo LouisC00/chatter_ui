@@ -38,7 +38,14 @@ const App = () => {
                 <Grid item xs={12} md={5} lg={4} xl={3}>
                   <ChatList />
                 </Grid>
-                <Grid xs={12} item md={7} lg={8} xl={9}>
+                <Grid
+                  xs={12}
+                  item
+                  md={7}
+                  lg={8}
+                  xl={9}
+                  sx={{ minHeight: "70vh" }}
+                >
                   <Routes />
                 </Grid>
               </Grid>
