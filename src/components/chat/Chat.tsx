@@ -95,7 +95,7 @@ const Chat = () => {
       <Box style={{ flexGrow: 1 }} />
       <Box
         sx={{
-          maxHeight: "70vh",
+          // maxHeight: "70vh",
           overflow: "auto",
         }}
         ref={scrollContainerRef}
