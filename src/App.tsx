@@ -44,7 +44,7 @@ const App = () => {
                   md={7}
                   lg={8}
                   xl={9}
-                  sx={{ minHeight: "100vh" }}
+                  sx={{ minHeight: "90vh" }}
                 >
                   <Routes />
                 </Grid>
