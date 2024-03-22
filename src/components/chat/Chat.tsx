@@ -92,7 +92,6 @@ const Chat = () => {
 
   return (
     <Stack sx={{ height: "100%" }}>
-      <h1>{data?.chat.name}</h1>
       <Box style={{ flexGrow: 1 }} />
       <Box
         sx={{
