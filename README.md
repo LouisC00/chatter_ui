@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# GraphQL Chat App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to my GraphQL chat application, a real-time messaging web application built with modern web technologies. This project demonstrates my skills as a full-stack developer, focusing on creating a secure and scalable chat application.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Real-Time Messaging**: Instant messaging with GraphQL subscriptions.
+- **Backend**: NestJS with a GraphQL API for handling CRUD operations and real-time communication.
+- **Distributed Messaging**: Redis integration for handling a large number of concurrent users and messages.
+- **Data Persistence**: MongoDB for efficient storage of chat data and user information.
+- **Frontend**: React with Material UI for a responsive and visually appealing user interface.
+- **State Management**: Apollo Client for interacting with the GraphQL API and caching data.
+- **User Profile**: Ability to update user icons, stored securely on Amazon S3.
+- **Deployment**: Deployed on AWS Elastic Beanstalk and Amplify with HTTPS configuration for security.
 
-### `yarn start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To get started with this project, clone the repository and install the dependencies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- git clone https://github.com/LouisC00/chatter_ui.git
+- cd chatter_ui
 
-### `yarn test`
+## Running the Application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the application in development mode, use the following commands:
 
-### `yarn build`
+## Start the frontend application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- cd chatter-ui
+- yarn install
+- yarn start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions are welcome! Feel free to open an issue or submit a pull request.
 
-### `yarn eject`
+## License
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Author
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Louis** - Full-stack developer specializing in modern web technologies.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contact
 
-## Learn More
+For more details or to discuss potential opportunities, please feel free to reach out.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you for exploring my GraphQL chat application. I'm excited to bring these skills to future projects and continue exploring the possibilities of modern web development.
