@@ -130,48 +130,51 @@ const Chat = () => {
                   alignItems="center"
                   marginBottom="1rem"
                   key={`${message.createdAt}-${index}`}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent:
-                      message.user._id === currentUserId
-                        ? "flex-end"
-                        : "flex-start",
-                  }}
                 >
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Avatar
-                      src={message.user.imageUrl}
-                      sx={{
-                        width: 52,
-                        height: 52,
-                        order: message.user._id === currentUserId ? 2 : 1,
-                      }}
-                    />
-                    <Paper
-                      sx={{
-                        order: message.user._id === currentUserId ? 1 : 2,
-                        marginLeft: 2,
-                        marginRight: 2,
-                      }}
-                    >
-                      <Typography
-                        sx={{ padding: "0.9rem", wordBreak: "break-all" }}
+                  {message.user._id === currentUserId && <Box flex={1} />}
+                  <Box>
+                    <Grid item xs={2} lg={1}>
+                      <Stack
+                        spacing={1}
+                        alignItems="center"
+                        justifyContent="center"
                       >
-                        {message.content.split("\n").map((line, index) => (
-                          <Fragment key={index}>
-                            {line}
-                            {index < message.content.split("\n").length - 1 && (
-                              <br />
-                            )}
-                          </Fragment>
-                        ))}
-                      </Typography>
-                    </Paper>
-                    <Typography variant="caption" sx={{ order: 3 }}>
-                      {new Date(message.createdAt).toLocaleTimeString()} -{" "}
-                      {new Date(message.createdAt).toLocaleDateString()}{" "}
-                    </Typography>
+                        <Avatar
+                          src={message.user.imageUrl}
+                          sx={{ width: 52, height: 52 }}
+                        />
+                        <Typography variant="caption">
+                          {message.user.username}
+                        </Typography>{" "}
+                      </Stack>
+                    </Grid>
+
+                    <Grid item xs={10} lg={11}>
+                      <Stack>
+                        <Paper sx={{ width: "fit-content" }}>
+                          <Typography
+                            sx={{ padding: "0.9rem", wordBreak: "break-all" }}
+                          >
+                            {message.content.split("\n").map((line, index) => (
+                              <Fragment key={index}>
+                                {line}
+                                {index <
+                                  message.content.split("\n").length - 1 && (
+                                  <br />
+                                )}
+                              </Fragment>
+                            ))}
+                          </Typography>
+                        </Paper>
+                        <Typography
+                          variant="caption"
+                          sx={{ marginLeft: "0.25rem" }}
+                        >
+                          {new Date(message.createdAt).toLocaleTimeString()} -{" "}
+                          {new Date(message.createdAt).toLocaleDateString()}{" "}
+                        </Typography>
+                      </Stack>
+                    </Grid>
                   </Box>
                 </Grid>
               ))}
