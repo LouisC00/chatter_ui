@@ -40,6 +40,9 @@ const Chat = () => {
 
   const [isAtBottom, setIsAtBottom] = useState(true);
 
+  console.log(currentUserId);
+  console.log(meData);
+
   useEffect(() => {
     countMessages();
   }, [countMessages]);
