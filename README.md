@@ -42,6 +42,7 @@ Example `/sample.env`:
 ```env
 REACT_APP_API_URL=http://localhost:5000
 REACT_APP_WS_URL=ws://localhost:5000
+```
 
 ## Contributing
 
@@ -60,4 +61,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For more details or to discuss potential opportunities, please feel free to reach out.
 
 Thank you for exploring my GraphQL chat application. I'm excited to bring these skills to future projects and continue exploring the possibilities of modern web development.
+
+```
+
 ```
