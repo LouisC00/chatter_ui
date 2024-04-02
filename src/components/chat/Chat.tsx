@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetChat } from "../../hooks/useGetChat";
+import { useGetMe } from "../../hooks/useGetMe";
 import {
   Avatar,
   Box,
@@ -23,6 +24,9 @@ const Chat = () => {
   const params = useParams();
   const [message, setMessage] = useState("");
   const chatId = params._id!;
+  const { data: meData } = useGetMe();
+  const currentUserId = meData?.me?._id;
+
   const { data } = useGetChat({ _id: chatId });
   const [createMessage] = useCreateMessage();
   const { data: messages, fetchMore } = useGetMessages({
@@ -126,6 +130,11 @@ const Chat = () => {
                   alignItems="center"
                   marginBottom="1rem"
                   key={`${message.createdAt}-${index}`}
+                  justifyContent={
+                    message.user._id === currentUserId
+                      ? "flex-start"
+                      : "flex-end"
+                  }
                 >
                   <Grid item xs={2} lg={1}>
                     <Stack
