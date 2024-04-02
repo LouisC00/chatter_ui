@@ -40,9 +40,6 @@ const Chat = () => {
 
   const [isAtBottom, setIsAtBottom] = useState(true);
 
-  console.log(currentUserId);
-  console.log(meData);
-
   useEffect(() => {
     countMessages();
   }, [countMessages]);
@@ -133,12 +130,8 @@ const Chat = () => {
                   alignItems="center"
                   marginBottom="1rem"
                   key={`${message.createdAt}-${index}`}
-                  justifyContent={
-                    message.user._id === currentUserId
-                      ? "flex-start"
-                      : "flex-end"
-                  }
                 >
+                  {message.user._id === currentUserId && <Box flex={1} />}
                   <Grid item xs={2} lg={1}>
                     <Stack
                       spacing={1}
