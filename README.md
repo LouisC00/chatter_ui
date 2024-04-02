@@ -30,6 +30,19 @@ To run the application in development mode, use the following commands:
 - yarn install
 - yarn start
 
+## Environment Variables
+
+Create a `.env` file in the root of the frontend directory and add the following variables:
+
+- `REACT_APP_API_URL`: The URL of the backend API (e.g., `http://localhost:5000`).
+- `REACT_APP_WS_URL`: The URL for the WebSocket connection (e.g., `ws://localhost:5000`).
+
+Example `/sample.env`:
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_WS_URL=ws://localhost:5000
+
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
@@ -47,3 +60,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For more details or to discuss potential opportunities, please feel free to reach out.
 
 Thank you for exploring my GraphQL chat application. I'm excited to bring these skills to future projects and continue exploring the possibilities of modern web development.
+```
