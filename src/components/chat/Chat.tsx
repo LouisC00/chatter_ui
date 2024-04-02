@@ -125,22 +125,16 @@ const Chat = () => {
                   new Date(messageB.createdAt).getTime()
               )
               .map((message, index) => (
-                <Box
+                <Grid
+                  container
+                  alignItems="center"
+                  marginBottom="1rem"
                   key={`${message.createdAt}-${index}`}
-                  sx={{
-                    display: "flex",
-                    justifyContent:
-                      message.user._id === currentUserId
-                        ? "flex-end"
-                        : "flex-start",
-                  }}
+                  direction={
+                    message.user._id === currentUserId ? "row-reverse" : "row"
+                  } // Adjust the direction based on the message owner
                 >
-                  <Grid
-                    container
-                    alignItems="center"
-                    marginBottom="1rem"
-                    key={`${message.createdAt}-${index}`}
-                  >
+                  <>
                     <Grid item xs={2} lg={1}>
                       <Stack
                         spacing={1}
@@ -183,8 +177,8 @@ const Chat = () => {
                         </Typography>
                       </Stack>
                     </Grid>
-                  </Grid>
-                </Box>
+                  </>
+                </Grid>
               ))}
           <div ref={divRef}></div>
         </InfiniteScroll>
