@@ -124,65 +124,60 @@ const Chat = () => {
                   new Date(messageA.createdAt).getTime() -
                   new Date(messageB.createdAt).getTime()
               )
-              .map((message, index) => {
-                // Debugging: Log the message user ID and the current user ID
-                console.log(
-                  `Message User ID: ${message.user._id}, Current User ID: ${currentUserId}`
-                );
-
-                return (
-                  <Grid
-                    container
-                    alignItems="center"
-                    marginBottom="1rem"
-                    key={`${message.createdAt}-${index}`}
-                  >
-                    {message.user._id === currentUserId && <Box flex={1} />}
-                    hi
-                    <Grid item xs={2} lg={1}>
-                      <Stack
-                        spacing={1}
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Avatar
-                          src={message.user.imageUrl}
-                          sx={{ width: 52, height: 52 }}
-                        />
-                        <Typography variant="caption">
-                          {message.user.username}
-                        </Typography>{" "}
-                      </Stack>
-                    </Grid>
-                    <Grid item xs={10} lg={11}>
-                      <Stack>
-                        <Paper sx={{ width: "fit-content" }}>
-                          <Typography
-                            sx={{ padding: "0.9rem", wordBreak: "break-all" }}
-                          >
-                            {message.content.split("\n").map((line, index) => (
-                              <Fragment key={index}>
-                                {line}
-                                {index <
-                                  message.content.split("\n").length - 1 && (
-                                  <br />
-                                )}
-                              </Fragment>
-                            ))}
-                          </Typography>
-                        </Paper>
-                        <Typography
-                          variant="caption"
-                          sx={{ marginLeft: "0.25rem" }}
-                        >
-                          {new Date(message.createdAt).toLocaleTimeString()} -{" "}
-                          {new Date(message.createdAt).toLocaleDateString()}{" "}
-                        </Typography>
-                      </Stack>
-                    </Grid>
+              .map((message, index) => (
+                <Grid
+                  container
+                  alignItems="center"
+                  marginBottom="1rem"
+                  key={`${message.createdAt}-${index}`}
+                  direction={
+                    message.user._id === currentUserId ? "row-reverse" : "row"
+                  } // Adjust the direction based on the message owner
+                >
+                  <Grid item xs={2} lg={1}>
+                    <Stack
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Avatar
+                        src={message.user.imageUrl}
+                        sx={{ width: 52, height: 52 }}
+                      />
+                      <Typography variant="caption">
+                        {message.user.username}
+                      </Typography>{" "}
+                    </Stack>
                   </Grid>
-                );
-              })}
+
+                  <Grid item xs={10} lg={11}>
+                    <Stack>
+                      <Paper sx={{ width: "fit-content" }}>
+                        <Typography
+                          sx={{ padding: "0.9rem", wordBreak: "break-all" }}
+                        >
+                          {message.content.split("\n").map((line, index) => (
+                            <Fragment key={index}>
+                              {line}
+                              {index <
+                                message.content.split("\n").length - 1 && (
+                                <br />
+                              )}
+                            </Fragment>
+                          ))}
+                        </Typography>
+                      </Paper>
+                      <Typography
+                        variant="caption"
+                        sx={{ marginLeft: "0.25rem" }}
+                      >
+                        {new Date(message.createdAt).toLocaleTimeString()} -{" "}
+                        {new Date(message.createdAt).toLocaleDateString()}{" "}
+                      </Typography>
+                    </Stack>
+                  </Grid>
+                </Grid>
+              ))}
           <div ref={divRef}></div>
         </InfiniteScroll>
       </Box>
