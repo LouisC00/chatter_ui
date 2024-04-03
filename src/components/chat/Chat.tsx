@@ -139,8 +139,9 @@ const Chat = () => {
                       alignItems="center"
                       justifyContent="center"
                       sx={{
-                        marginRight: currentUserId === message.user._id ? 1 : 0,
-                        marginLeft: currentUserId === message.user._id ? 0 : 1,
+                        marginX: 1,
+                        // marginRight: currentUserId === message.user._id ? 1 : 0,
+                        // marginLeft: currentUserId === message.user._id ? 0 : 1,
                       }}
                     >
                       <Avatar
