@@ -127,15 +127,21 @@ const Chat = () => {
               .map((message, index) => (
                 <Grid
                   container
-                  alignItems="center"
                   marginBottom="1rem"
+                  direction={
+                    currentUserId === message.user._id ? "row-reverse" : "row"
+                  }
                   key={`${message.createdAt}-${index}`}
                 >
-                  <Grid item xs={2} lg={1}>
+                  <Grid item>
                     <Stack
                       spacing={1}
                       alignItems="center"
                       justifyContent="center"
+                      sx={{
+                        marginRight: currentUserId === message.user._id ? 1 : 0,
+                        marginLeft: currentUserId === message.user._id ? 0 : 1,
+                      }}
                     >
                       <Avatar
                         src={message.user.imageUrl}
@@ -147,8 +153,15 @@ const Chat = () => {
                     </Stack>
                   </Grid>
 
-                  <Grid item xs={10} lg={11}>
-                    <Stack>
+                  <Grid item>
+                    <Stack
+                      direction="column"
+                      alignItems={
+                        currentUserId === message.user._id
+                          ? "flex-end"
+                          : "flex-start"
+                      }
+                    >
                       <Paper sx={{ width: "fit-content" }}>
                         <Typography
                           sx={{ padding: "0.9rem", wordBreak: "break-all" }}
@@ -166,7 +179,7 @@ const Chat = () => {
                       </Paper>
                       <Typography
                         variant="caption"
-                        sx={{ marginLeft: "0.25rem" }}
+                        sx={{ marginTop: "0.25rem" }}
                       >
                         {new Date(message.createdAt).toLocaleTimeString()} -{" "}
                         {new Date(message.createdAt).toLocaleDateString()}
