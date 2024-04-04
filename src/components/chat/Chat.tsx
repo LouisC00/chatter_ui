@@ -135,14 +135,15 @@ const Chat = () => {
                 >
                   <Grid item>
                     <Stack
+                      direction={
+                        currentUserId === message.user._id
+                          ? "row-reverse"
+                          : "row"
+                      }
                       spacing={1}
                       alignItems="center"
                       justifyContent="center"
-                      sx={{
-                        marginX: 1,
-                        // marginRight: currentUserId === message.user._id ? 1 : 0,
-                        // marginLeft: currentUserId === message.user._id ? 0 : 1,
-                      }}
+                      sx={{ marginX: 1 }}
                     >
                       <Avatar
                         src={message.user.imageUrl}
@@ -151,10 +152,42 @@ const Chat = () => {
                       <Typography variant="caption">
                         {message.user.username}
                       </Typography>
+
+                      <Stack
+                        direction="column"
+                        alignItems={
+                          currentUserId === message.user._id
+                            ? "flex-end"
+                            : "flex-start"
+                        }
+                      >
+                        <Paper sx={{ width: "fit-content" }}>
+                          <Typography
+                            sx={{ padding: "0.9rem", wordBreak: "break-all" }}
+                          >
+                            {message.content.split("\n").map((line, index) => (
+                              <Fragment key={index}>
+                                {line}
+                                {index <
+                                  message.content.split("\n").length - 1 && (
+                                  <br />
+                                )}
+                              </Fragment>
+                            ))}
+                          </Typography>
+                        </Paper>
+                        <Typography
+                          variant="caption"
+                          sx={{ marginTop: "0.25rem" }}
+                        >
+                          {new Date(message.createdAt).toLocaleTimeString()} -{" "}
+                          {new Date(message.createdAt).toLocaleDateString()}
+                        </Typography>
+                      </Stack>
                     </Stack>
                   </Grid>
 
-                  <Grid item>
+                  {/* <Grid item>
                     <Stack
                       direction="column"
                       alignItems={
@@ -186,7 +219,7 @@ const Chat = () => {
                         {new Date(message.createdAt).toLocaleDateString()}
                       </Typography>
                     </Stack>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               ))}
           <div ref={divRef}></div>
