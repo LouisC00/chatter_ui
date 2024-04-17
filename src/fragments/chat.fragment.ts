@@ -1,11 +1,18 @@
-import { graphql } from "../gql/gql";
+import { gql } from "@apollo/client";
 
-export const ChatFragment = graphql(`
+export const ChatFragment = gql`
   fragment ChatFragment on Chat {
     _id
     name
     latestMessage {
-      ...MessageFragment
+      _id
+      content
+      createdAt
+      user {
+        _id
+        username
+        imageUrl
+      }
     }
   }
-`);
+`;
